@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gallery-color-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+        .gallery-color-box:hover {
+            transform: scale(1.08);
+        }
+        .color-label {
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 min-h-screen flex items-center justify-center p-2">
+    <div class="w-full max-w-2xl">
+        <div class="flex flex-row w-full gap-4 items-center">
+            <!-- Color Boxes on the Left Half (3x2 grid) -->
+            <div class="grid grid-cols-3 grid-rows-2 gap-4 p-2 bg-white rounded-xl shadow-md w-1/2">
+                <!-- Ice Crystal -->
+                <div class="flex flex-col items-center">
+                    <div class="gallery-color-box" style="background-color: #F5F3EA;" data-img="ice_crystal.jpg"></div>
+                    <span class="mt-2 text-gray-700 font-semibold color-label">Ice Crystal</span>
+                    <span class="text-gray-400 text-xs">8444</span>
+                </div>
+                <!-- Cream Pie -->
+                <div class="flex flex-col items-center">
+                    <div class="gallery-color-box" style="background-color: #FCF8E3;" data-img="cream_pie.jpg"></div>
+                    <span class="mt-2 text-gray-700 font-semibold color-label">Cream Pie</span>
+                    <span class="text-gray-400 text-xs">L152</span>
+                </div>
+                <!-- Sonnet -->
+                <div class="flex flex-col items-center">
+                    <div class="gallery-color-box" style="background-color: #FFF8F1;" data-img="sonnet.jpg"></div>
+                    <span class="mt-2 text-gray-700 font-semibold color-label">Sonnet</span>
+                    <span class="text-gray-400 text-xs">L146</span>
+                </div>
+                <!-- Dreamy Night -->
+                <div class="flex flex-col items-center">
+                    <div class="gallery-color-box" style="background-color: #E7E3D7;" data-img="dreamy_night.jpg"></div>
+                    <span class="mt-2 text-gray-700 font-semibold color-label">Dreamy Night</span>
+                    <span class="text-gray-400 text-xs">L159</span>
+                </div>
+                <!-- Enlighten-N -->
+                <div class="flex flex-col items-center">
+                    <div class="gallery-color-box" style="background-color: #E3DBCF;" data-img="enlighten_n.jpg"></div>
+                    <span class="mt-2 text-gray-700 font-semibold color-label">Enlighten-N</span>
+                    <span class="text-gray-400 text-xs">4148</span>
+                </div>
+                <!-- Sugared Nut -->
+                <div class="flex flex-col items-center">
+                    <div class="gallery-color-box" style="background-color: #FDF5DF;" data-img="sugared_nut.jpg"></div>
+                    <span class="mt-2 text-gray-700 font-semibold color-label">Sugared Nut</span>
+                    <span class="text-gray-400 text-xs">L126</span>
+                </div>
+            </div>
+            <!-- Image on the Right Half -->
+            <div class="relative w-1/2 h-48 bg-gray-200 rounded-xl overflow-hidden shadow-lg flex items-center justify-center">
+                <img id="galleryImage" src="images/ice_crystal.jpg" alt="Gallery"
+                     class="w-full h-full object-cover rounded-xl" style="z-index: 0;">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryColorBoxes = document.querySelectorAll('.gallery-color-box');
+            const galleryImage = document.getElementById('galleryImage');
+
+            galleryColorBoxes.forEach(box => {
+                box.addEventListener('click', (event) => {
+                    const imgName = event.target.dataset.img;
+                    if (imgName) {
+                        galleryImage.src = `images/${imgName}`;
+                    }
+                });
+            });
+
+            // Fallback for gallery image
+            galleryImage.onerror = function() {
+                this.src = 'https://placehold.co/600x300/FFFFFF/000000?text=Image+Not+Found';
+            };
+        });
+    </script>
+</body>
+</html>
